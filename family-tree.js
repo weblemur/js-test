@@ -23,7 +23,8 @@ const findPerson = (tree, name) => {
   for (let i=0; i<tree.length; i++) {
     const person = tree[0];
     if (person.name === name) return person;
-    //const child = findPerson(person.children, name);
+    const child = findPerson(person.children, name);
+    if (child) return child;
   }
   return null;
 };

@@ -17,12 +17,28 @@ describe('familyTree', () => {
   });
 
   it('collects children for each parent', () => {
-    const single = [{ name: 'John', parent: 'Sue' }, { name: 'Jack', parent: 'Sue' }];
+    const siblings = [
+      { name: 'John', parent: 'Sue' },
+      { name: 'Jack', parent: 'Sue' }
+    ];
     const result = [{ name: 'Sue', children: [
       { name: 'John', children: [] },
       { name: 'Jack', children: [] }
     ] }];
-    expect(familyTree(single)).to.deep.equal(result);
+    expect(familyTree(siblings)).to.deep.equal(result);
+  });
+
+  it('nests children within children', () => {
+    const descendants = [
+      { name: 'John', parent: 'Sue' },
+      { name: 'Jack', parent: 'John' }
+    ];
+    const result = [{ name: 'Sue', children: [
+      { name: 'John', children: [
+        { name: 'Jack', children: [] }
+      ] },
+    ] }];
+    expect(familyTree(descendants)).to.deep.equal(result);
   });
 
   xit('fully maps the given list of people', () => {
