@@ -41,7 +41,36 @@ describe('familyTree', () => {
     expect(familyTree(descendants)).to.deep.equal(result);
   });
 
-  xit('fully maps the given list of people', () => {
+  it('properly re-orders descendants', () => {
+    const unordered = [
+      { name: 'Jack', parent: 'John' },
+      { name: 'John', parent: 'Sue' }
+    ];
+    const result = [{ name: 'Sue', children: [
+      { name: 'John', children: [
+        { name: 'Jack', children: [] }
+      ] },
+    ] }];
+    expect(familyTree(unordered)).to.deep.equal(result);
+  });
+
+  it('stiches chains of descendants together', () => {
+    const broken = [
+      { name: 'Jack', parent: 'John' },
+      { name: 'Sue', parent: 'Garth' },
+      { name: 'John', parent: 'Sue' }
+    ];
+    const result = [{ name: 'Garth', children: [
+      { name: 'Sue', children: [
+        { name: 'John', children: [
+          { name: 'Jack', children: [] }
+        ] }
+      ] }
+    ] }];
+    expect(familyTree(broken)).to.deep.equal(result);
+  });
+
+  it('fully maps the given list of people', () => {
     const result = [
       { name: 'Sue', children: [
         { name: 'John', children: [] },

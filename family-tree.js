@@ -5,8 +5,11 @@
 //  { name: ‘Sue’, children: [
 //    { name: 'John', children:[] },
 //    { name: 'Garth', children: [] }
-//  ]}, {<another person>}
+//  ]},
+//  {<another person>},
+//  ...etc
 // ]
+
 const people = [
   { name: 'John', parent: 'Sue' },
   { name: 'Jack', parent: 'Steve' },
@@ -21,7 +24,7 @@ const people = [
 
 const findPerson = (tree, name) => {
   for (let i=0; i<tree.length; i++) {
-    const person = tree[0];
+    let person = tree[i];
     if (person.name === name) return person;
     const child = findPerson(person.children, name);
     if (child) return child;
@@ -32,9 +35,13 @@ const findPerson = (tree, name) => {
 const familyTree = list => {
   const tree = [];
   list.forEach(person => {
+    const currentIdx = tree.findIndex(p => p.name === person.name);
+    const [ newPerson ] = currentIdx !== -1 ?
+      tree.splice(currentIdx, 1) :
+      [{ name: person.name, children: [] }];
     const parent = findPerson(tree, person.parent);
-    if (parent) parent.children.push({ name: person.name, children: [] });
-    else tree.push({ name: person.parent, children: [{ name: person.name, children: [] }] });
+    if (parent) parent.children.push(newPerson);
+    else tree.push({ name: person.parent, children: [newPerson] });
   });
   return tree;
 };
