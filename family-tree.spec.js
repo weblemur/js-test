@@ -8,7 +8,7 @@ describe('familyTree', () => {
     expect(familyTree([])).to.deep.equal([]);
   });
 
-  it('creates nodes for parents', () => {
+  it('creates entries for parents', () => {
     const single = [{ name: 'John', parent: 'Sue' }];
     const result = [{ name: 'Sue', children:
       [{ name: 'John', children: [] }]
@@ -16,6 +16,14 @@ describe('familyTree', () => {
     expect(familyTree(single)).to.deep.equal(result);
   });
 
+  it('collects children for each parent', () => {
+    const single = [{ name: 'John', parent: 'Sue' }, { name: 'Jack', parent: 'Sue' }];
+    const result = [{ name: 'Sue', children: [
+      { name: 'John', children: [] },
+      { name: 'Jack', children: [] }
+    ] }];
+    expect(familyTree(single)).to.deep.equal(result);
+  });
 
   xit('fully maps the given list of people', () => {
     const result = [

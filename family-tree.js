@@ -19,18 +19,24 @@ const people = [
 ];
 
 
+const findPerson = (tree, name) => {
+  for (let i=0; i<tree.length; i++) {
+    const person = tree[0];
+    if (person.name === name) return person;
+    //const child = findPerson(person.children, name);
+  }
+  return null;
+};
+
 const familyTree = list => {
   const tree = [];
   list.forEach(person => {
-    tree.push({ name: person.parent, children: [{ name: person.name, children: [] }] });
+    const parent = findPerson(tree, person.parent);
+    if (parent) parent.children.push({ name: person.name, children: [] });
+    else tree.push({ name: person.parent, children: [{ name: person.name, children: [] }] });
   });
   return tree;
 };
-
-// const findPerson = (tree, name) =>
-//   tree.any(person =>
-//     person.name === name || findPerson(person.children, name)
-//   );
 
 
 module.exports = {
