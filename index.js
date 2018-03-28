@@ -1,4 +1,4 @@
-const { familyTree, people } = require('./flat-list-transform');
+const { familyTree, people } = require('./family-tree');
 
 
 console.log(familyTree(people));
