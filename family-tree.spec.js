@@ -8,6 +8,15 @@ describe('familyTree', () => {
     expect(familyTree([])).to.deep.equal([]);
   });
 
+  it('creates nodes for parents', () => {
+    const single = [{ name: 'John', parent: 'Sue' }];
+    const result = [{ name: 'Sue', children:
+      [{ name: 'John', children: [] }]
+    }];
+    expect(familyTree(single)).to.deep.equal(result);
+  });
+
+
   xit('fully maps the given list of people', () => {
     const result = [
       { name: 'Sue', children: [

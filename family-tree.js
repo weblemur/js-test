@@ -20,8 +20,17 @@ const people = [
 
 
 const familyTree = list => {
-  return [];
+  const tree = [];
+  list.forEach(person => {
+    tree.push({ name: person.parent, children: [{ name: person.name, children: [] }] });
+  });
+  return tree;
 };
+
+// const findPerson = (tree, name) =>
+//   tree.any(person =>
+//     person.name === name || findPerson(person.children, name)
+//   );
 
 
 module.exports = {
