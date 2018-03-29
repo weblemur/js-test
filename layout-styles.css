@@ -1,7 +1,10 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  line-height: 20px;
+  line-height: 24px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #222;
 }
 
 body {
@@ -25,12 +28,14 @@ body {
   height: 150px;
   padding-top: 60px;
   text-align: center;
+  background: #57c6de;
 }
 
 #page-header .sidebar {
   flex: 1;
   padding: 0 80px;
   overflow-y: scroll;
+  background: #96dfef;
 }
 
 #page-content {
@@ -38,9 +43,30 @@ body {
   min-width: 200px;
   padding: 120px 40px;
   overflow-y: scroll;
+  background: #ddf4ff;
+}
+
+/*** Extra Typography Cleanup ***/
+
+#page-header .title h1 {
+  font-size: 2em;
+}
+
+#page-header .sidebar h2 {
+  font-size: 1.2em;
+  margin: 44px 0;
+}
+
+#page-header .sidebar p {
+  color: #555;
+}
+
+#page-content h3 {
+  font-size: 1.6em;
+  margin-bottom: 44px;
 }
 
 #page-header .sidebar *, #page-content * {
-  margin: 20px 0;
+  margin: 24px 0;
 }
 
