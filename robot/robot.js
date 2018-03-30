@@ -1,7 +1,11 @@
 const Computer = require('./computer');
 const langModule = require('./language');
+const moveModule = require('./movement');
 
-class Robot extends langModule(Computer) {
+class Robot extends moveModule(langModule(Computer)) {
+  fullGreeting(name) {
+    return this.greet(name) + '\n' + this.wave();
+  }
 }
 
 
