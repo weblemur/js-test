@@ -7,11 +7,19 @@ class Computer {
     return str.split('').map(char => char.charCodeAt(0).toString(2)).join(' ');
   }
 
+  program(...commands) {
+    return commands.map(command =>
+      Array.isArray(command) ?
+        this.execute(...command) :
+        this.execute(command)
+    ).join('\n');
+  }
+
   execute(command, ...args) {
     if (typeof this[command] !== 'function') {
-      return 'DOES NOT COMPUTE';
+      return '***DOES NOT COMPUTE***';
     } else {
-      return Computer.toBinary(this[command](...args));
+      return this[command](...args);
     }
   }
 }

@@ -4,7 +4,7 @@ const moveModule = require('./movement');
 
 class Robot extends moveModule(langModule(Computer)) {
   fullGreeting(name) {
-    return this.greet(name) + '\n' + this.wave();
+    return this.program(['greet', name], 'wave');
   }
 }
 
