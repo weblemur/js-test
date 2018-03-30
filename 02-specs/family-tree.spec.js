@@ -1,7 +1,7 @@
 /* global describe it */
 const { expect } = require('chai');
 
-const { familyTree, people } = require('./family-tree');
+const { familyTree, people } = require('../01-family-tree/family-tree');
 
 describe('familyTree', () => {
   it('handles empty inputs', () => {

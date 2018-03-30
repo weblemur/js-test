@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js --watch"
+    "first": "node 01-family-tree",
+    "second": "mocha 02-specs/family-tree.spec",
+    "third": "node 03-robot",
+    "fourth": "open 04-layout/layout.html",
+    "start": "npm run first && npm run second && npm run third && npm run fourth",
+    "test": "mocha **/*.spec.js --watch"
   },
   "author": "",
   "license": "ISC",
